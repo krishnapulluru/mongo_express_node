@@ -12,13 +12,23 @@ const DB = process.env.DATABASE.replace(
   process.env.DATABASE_PASSWORD
 );
 
-mongoose.connect(DB , {
+mongoose.connect(DB, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false
 })
-.then(()=>console.log("Connection established successfylly ✅✅✅✅✅✅✅"))
-.catch((err)=>console.log(err))
+  .then(() => console.log("Connection established successfylly ✅✅✅✅✅✅✅"))
+  .catch((err) => console.log(err))
 
 const port = process.env.PORT || 3000;
-app.listen(port);
+const server = app.listen(port, () => {
+  console.log("server Started");
+});
+
+// process.on("rejectionHandled", err => {
+//   console.log(err.name, err.message);
+//   console.log("Unhandeled Rejection! Shutting Down!")
+//   server.close(() => {
+//     process.exit(1);
+//   })
+// })
